@@ -41,8 +41,8 @@
 </html>
 
 <?php
-
     function get_info() {
+        global $database;
 
         // is post?
         if ($_SERVER["REQUEST_METHOD"] === "POST") {
@@ -50,7 +50,6 @@
             $username = isset($_POST["username"]) ? trim($_POST["username"]) : null;
             $email = isset($_POST["email"]) ? trim($_POST["email"]) : null;
             $password = isset($_POST["password"]) ? trim($_POST["password"]) : null;
-
 
             // check if someone is empty
             $errorMessage = "";
@@ -60,7 +59,7 @@
             }
 
             if (empty($email)) {
-                $errorMessage .= "Username can't be empty <br>";
+                $errorMessage .= "Email can't be empty <br>";
             }
 
             if (empty($password)) {
@@ -76,26 +75,19 @@
             $email = htmlspecialchars($email);
             $password = htmlspecialchars($password); 
 
-            $array_info = [
-                "username" => $username,
-                "email" => $email,
-                "password" => $password
-            ];
+            // hash password
+            $hashed_password = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
 
-            foreach($array_info as $key => $value) {
-                echo "{$key} : {$value} <br>";
-            }
-
-            return $array_info;
+            $database["Username"] = $username;
+            $database["Email"] = $email;
+            $database["Password"] = $hashed_password;
         }
-        
         return "Invalid requested method";
-
     }
 
     get_info();
 
-
-
-    // print_r(get_info());
+    foreach($database as $key => $value) {
+        echo "{$key} : {$value} <br>";
+    }
 ?>
