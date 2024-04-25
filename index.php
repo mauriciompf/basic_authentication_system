@@ -55,6 +55,14 @@
         die("Connection failed: {$conn->connect_error} <br>");
     }
 
+    // $sql = "use forms_db";
+
+    // if ($conn->query($sql)) {
+    //     echo "use forms_db <br>";
+    // } else {
+    //     echo "error in query: {$conn->error} <br>";
+    // }
+
     // $sql = "
     //     create table form (
     //         id int auto_increment primary key,
@@ -64,61 +72,71 @@
     //     );
     // ";
 
-    
+    // if ($conn->query($sql)) {
+    //     echo "Created table successfully";
+    // } else {
+    //     echo "Error inserting secord {$conn->error}";
+    // }
 
     // is post?
-    if ($_SERVER["REQUEST_METHOD"] === "POST") {
-        // validate inputs
-        $username = isset($_POST["username"]) ? trim($_POST["username"]) : null;
-        $email = isset($_POST["email"]) ? trim($_POST["email"]) : null;
-        $password = isset($_POST["password"]) ? trim($_POST["password"]) : null;
-
-        echo "Connected successfully";
-
-        // check if someone is empty
-        $errorMessage = "";
+        try {
+            if ($_SERVER["REQUEST_METHOD"] === "POST") {
+                // validate inputs
+                $username = isset($_POST["username"]) ? trim($_POST["username"]) : null;
+                $email = isset($_POST["email"]) ? trim($_POST["email"]) : null;
+                $password = isset($_POST["password"]) ? trim($_POST["password"]) : null;
         
-        if (empty($username)) {
-            $errorMessage .= "Username can't be empty <br>";
+                echo "Connected successfully <br>";
+        
+                // check if someone is empty
+                $errorMessage = "";
+                
+                // if (empty($username)) {
+                //     $errorMessage .= "Username can't be empty <br>";
+                // }
+        
+                if (empty($email)) {
+                    $errorMessage .= "Email can't be empty <br>";
+                }
+        
+                if (empty($password)) {
+                    $errorMessage .= "password can't be empty <br>";
+                }
+        
+                if (!empty($errorMessage)) {
+                    echo $errorMessage;
+                } else {
+                    // Saniteze inputs
+                    $username = htmlspecialchars($username);
+                    $email = htmlspecialchars($email);
+                    $password = htmlspecialchars($password); 
+            
+                    // hash password
+                    $hashed_password = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
+                
+                    // stmt === statement
+                    $stmt = $conn->prepare("INSERT INTO form (username, email, password) VALUES (?, ?, ?)"); // ? === placeholder to actually values
+                    // s === string
+                    $stmt->bind_param("sss", $username, $email, $hashed_password); 
+        
+                    if ($stmt->execute()) {
+                        echo "Query created succefully <br>";
+                    } else {
+                        echo "Error creating query: {$stmt->error} <br>";
+                    }
+                
+                    // close statement
+                    $stmt->close();
+                }
+
+                // end connection
+                $conn->close();
+            } else {
+                echo "Invalid requested method <br>";
+            }
+        } catch (error) {
+            echo "Error: {$error} <br>";
         }
-
-        if (empty($email)) {
-            $errorMessage .= "Email can't be empty <br>";
-        }
-
-        if (empty($password)) {
-            $errorMessage .= "password can't be empty <br>";
-        }
-
-        if (!empty($errorMessage)) {
-            echo $errorMessage;
-        }
-
-        // Saniteze inputs
-        $username = htmlspecialchars($username);
-        $email = htmlspecialchars($email);
-        $password = htmlspecialchars($password); 
-
-        // hash password
-        $hashed_password = password_hash($password, PASSWORD_BCRYPT, ["cost" => 12]);
-
-        $stmt = $conn->prepare("INSERT INTO form (username, email, password) VALUES (?, ?, ?)");
-        $stmt->bind_param("sss", $username, $email, $hashed_password);
-
-        if ($stmt->execute()) {
-            echo "Query created succefully <br>";
-        } else {
-            echo "Error creating query: {$stmt->error} <br>";
-        }
-    
-        // end connection
-        $stmt->close();
-        $conn->close();
-
-    } else {
-        echo "Invalid requested method";
-    }
-
     // foreach($database as $key => $value) {
     //     echo "{$key} : {$value} <br>";
     // }
