@@ -1,0 +1,88 @@
+:root {
+  --background-color: #121212;
+  --form-background-color: #1e1e1e;
+  --text-color: #ffffff;
+  --subtle-text-color: #b0b0b0;
+  --primary-color: #bb86fc;
+  --secondary-color: #03dac6;
+  --border-color: #3a3a3a;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Merriweather", serif;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+.btn {
+  display: block;
+  background: none;
+  border: none;
+  font: inherit;
+  cursor: pointer;
+}
+
+.wrapper {
+  display: grid;
+  place-items: center;
+  height: 80vh;
+}
+
+.wellcome {
+  text-align: center;
+  margin-block-end: 5rem;
+  font-size: 5rem;
+}
+
+.main {
+  background-color: var(--background-color);
+  color: var(--text-color);
+
+  .wrapper-form_login {
+    width: 300px;
+    margin: auto;
+    padding: 2rem;
+    border-radius: 0.75rem;
+    background-color: var(--form-background-color);
+  }
+}
+
+.heading {
+  margin-block-end: 1.5rem;
+}
+
+.form {
+  .input {
+    margin-block-end: 1rem;
+
+    input {
+      width: 100%;
+    }
+
+    label {
+      display: block;
+    }
+  }
+
+  .form_buttons {
+    margin-block-start: 1.5rem;
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+
+    .btn {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid var(--subtle-text-color);
+    }
+  }
+}
+
+.active {
+  display: none;
+}

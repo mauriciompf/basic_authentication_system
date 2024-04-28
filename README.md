@@ -2,7 +2,7 @@
 
 ## Introduction
 
-The objective of this project is to practice web development using HTML, CSS, JavaScript, PHP, and MySQL. Through this project, I aim to deepen my knowledge of documentation, client-side and server-side validation, PHP language, database management, MySQL with PHP, and the combination of front-end and back-end development.
+The objective of this project is to practice web development using HTML, CSS, TypeScript, PHP, and MySQL. Through this project, I aim to deepen my knowledge of documentation, client-side and server-side validation, PHP language, database management, MySQL with PHP, and the combination of front-end and back-end development.
 
 ## This Project
 
@@ -24,9 +24,9 @@ Since this is a personal practice project, _maybe_ I  will list the functionalit
 
 - When a user enters the site, they should be presented with a **sign-in box** that contains input fields for **email and password**.
 - There are two buttons in the sign-in box:
-    - **Enter account**: Allows the user to sign in using their provided email and password.
+  - **Enter account**: Allows the user to sign in using their provided email and password.
     - **Register new account**: Takes the user to a new account registration form.
-- The forms should incorporate **accessibility features** such as:
+    - The forms should incorporate **accessibility features** such as:
     - **Labels**: Descriptive labels for input fields to help users understand what information to provide.
     - **ARIA attributes**: Accessible Rich Internet Applications (ARIA) attributes to improve the experience for users with disabilities.
 - If the user clicks the **register new account** button, the login box is replaced by a registration form.
