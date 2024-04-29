@@ -42,14 +42,22 @@ html {
 .main {
   background-color: var(--background-color);
   color: var(--text-color);
+}
 
-  .wrapper-form_login {
-    width: 300px;
-    margin: auto;
-    padding: 2rem;
-    border-radius: 0.75rem;
-    background-color: var(--form-background-color);
-  }
+.wrapper-form_login {
+  width: 300px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background-color: var(--form-background-color);
+}
+
+.wrapper-form_register {
+  width: 300px;
+  margin: auto;
+  padding: 2rem;
+  border-radius: 0.75rem;
+  background-color: var(--form-background-color);
 }
 
 .heading {

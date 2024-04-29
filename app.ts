@@ -1,6 +1,7 @@
 const btnRegister = document.querySelector(
   ".btn-register"
 ) as HTMLButtonElement;
+const btnLogin = document.querySelector(".btn-login") as HTMLButtonElement;
 
 const wrapperFormLogin = document.querySelector(
   ".wrapper-form_login"
@@ -12,4 +13,9 @@ const wrapperFormRegister = document.querySelector(
 btnRegister.addEventListener("click", () => {
   wrapperFormLogin.classList.toggle("active");
   wrapperFormRegister.classList.toggle("active");
+});
+
+btnLogin.addEventListener("click", () => {
+  wrapperFormLogin.classList.remove("active");
+  wrapperFormRegister.classList.add("active");
 });
