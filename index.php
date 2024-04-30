@@ -63,9 +63,8 @@
                     </div>
                 </form>
             </div>
-
-            <?php require "forms.php"; ?>
         </main>
+        <?php require "forms.php"; ?>
     </div>
     <script type="module" src="app.js"></script>
 </body>
