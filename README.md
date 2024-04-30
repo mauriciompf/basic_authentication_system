@@ -38,6 +38,6 @@ I used [PHP Intelephense](https://intelephense.com) VSCode extension to format t
     - **Disallow Whitespace**: Prevent input fields from containing leading, trailing, or excessive whitespace to maintain data consistency and avoid unnecessary storage.
     - **Prevent Empty Values**: Ensure that users do not submit empty values in required fields to maintain data quality and prevent errors.
     - **Escape HTML Characters**: Sanitize input by escaping HTML characters to protect against injection attacks and maintain the integrity of the data.
-    - **Ensure Correct Data Type**: Validate that input data matches the expected type (e.g., email, number, date) to prevent type mismatch errors and maintain data consistency.
-    - **Use Tokens for CSRF Protection**: Implement tokens to protect against Cross-Site Request Forgery (CSRF) attacks. This helps ensure that form submissions are legitimate and initiated by the user.
-    - **Return Appropriate Error Messages**: Provide clear, relevant error messages to the client when validation fails. This helps users understand and correct their inputs, improving the overall user experience.
+    - **Ensure Correct Data Type**: Validate that input data matches the expected type to prevent type mismatch errors and maintain data consistency.
+    - **Check for Invalid Email**: Validate email addresses to ensure they are in the correct format and are not already in use.
+    - **Check Password Matching**: Verify that the password and confirm password fields match to prevent user errors and ensure account security.
