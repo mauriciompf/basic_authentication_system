@@ -24,12 +24,23 @@ try {
         // Escape HTML Characters && Sanitize inputs
         $first_name = htmlspecialchars($first_name, ENT_QUOTES);
         $last_name = htmlspecialchars($last_name, ENT_QUOTES);
-        $r_email = filter_var($r_email, FILTER_SANITIZE_EMAIL);
 
-        // Hash password
-        $hashed_r_password = password_hash($r_password, PASSWORD_BCRYPT);
-        $hashed_confirm_pass = password_hash($confirm_pass, PASSWORD_BCRYPT);
+        // Check for invalid email
+        if (filter_var($r_email, FILTER_VALIDATE_EMAIL)) {
+            $r_email = filter_var($r_email, FILTER_SANITIZE_EMAIL);
+        } else {
+            throw new ErrorException("email is incorrect in validatio");
+        }
+
+        // Check password matching
+        if ($r_password === $confirm_pass) {
+            // Hash password
+            $hashed_r_password = password_hash($r_password, PASSWORD_BCRYPT);
+            $hashed_confirm_pass = password_hash($confirm_pass, PASSWORD_BCRYPT);
+        } else {
+            throw new ErrorException("passwords don't match");
+        }
     }
 } catch (ErrorException $error) {
-    echo "Error: {$error->getMessage()}";
+    echo "<strong style='text-align: center'>Error: {$error->getMessage()}</strong>";
 }
