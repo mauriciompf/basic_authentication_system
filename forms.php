@@ -1,11 +1,13 @@
 <?php
 
 try {
+
     session_start();
+
     if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
         // Check CSRF token
-        if (!isset($_POST["token"]) || $_POST["token"] !== $_SESSION["token"]) {
+        if (!isset($_SESSION["token"]) && empty($_SESSION["token"])) {
             throw new ErrorException("CSRF token mismatch");
         }
 
