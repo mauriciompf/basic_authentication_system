@@ -37,7 +37,7 @@
             <div class="wrapper-form_register wrapper-form_login">
                 <h2 class="heading">Sign-up</h2>
                 <form action="index.php" method="POST" class="form">
-                    <input type="hidden" name="token" value="<?php echo $token; ?>" />
+                    <input type="hidden" name="token" value="<?php echo $token; ?>">
 
                     <div class="input">
                         <label for="f_name">First Name*</label>
