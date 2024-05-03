@@ -1,38 +1,8 @@
 <?php
 
-function createConnection()
-{
-    try {
-        $servername = "localhost";
-        $username = "root";
-        $password = "";
-
-        // Create connection
-        $conn = new mysqli($servername, $username, $password);
-
-        // Check connection
-        if ($conn->connect_error) {
-            die("Connection failed: {connect_error} <br>");
-        }
-
-        echo "Connected succesfully <br>";
-
-        // create database
-
-        $sql = "CREATE DATABASE register_form";
-
-        if ($conn->query($sql) === true) {
-            echo "Database created sucessfully";
-        } else {
-            echo "Error creating database {$conn->error}";
-        }
-
-        $conn->close();
-    } catch (Exception $e) {
-        throw new Exception("Connection failed: {$e->getMessage()}");
-    }
-}
-
+require_once "database.php";
+require "create_table.php";
+require "db_operations.php";
 
 function handleFormSubmission()
 {
@@ -53,6 +23,12 @@ function handleFormSubmission()
 
         // Hash the password
         $hashedPassword = password_hash($password, PASSWORD_BCRYPT);
+
+        $conn = createConnection();
+
+        insertUser($conn, $firstName, $lastName, $email, $hashedPassword);
+
+        $conn = null;
     } catch (Exception $e) {
         echo "Error: {$e->getMessage()}";
     }
