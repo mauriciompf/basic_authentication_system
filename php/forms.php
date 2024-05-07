@@ -1,7 +1,7 @@
 <?php
 
 require_once "database.php";
-require "create_table.php";
+// require "create_table.php";
 require "db_operations.php";
 
 function handleFormSubmission()
@@ -30,7 +30,7 @@ function handleFormSubmission()
 
         $conn = null;
     } catch (Exception $e) {
-        echo "Error: {$e->getMessage()}";
+        echo "Error: {$e->getMessage()} <br>";
     }
 }
 
