@@ -8,7 +8,7 @@ function createTable()
 
         $conn = createConnection();
 
-        // $conn->query("USE test");
+        $conn->query("USE forms");
 
         $sql = "
             CREATE TABLE users (

@@ -3,7 +3,7 @@
 function insertUser($conn, $firstName, $lastName, $email, $hashedPassword)
 {
     try {
-        $conn->query("USE test");
+        $conn->query("USE forms");
 
         $stmt = $conn->prepare("SELECT COUNT(*) FROM users WHERE email = ?");
         $stmt->execute([$email]);

@@ -28,7 +28,7 @@
                         </div>
 
                         <div class="form_buttons">
-                            <button type="submit" class="btn btn-enter" aria-describedby="Enter with your account">Enter</button>
+                            <button type="submit" class="btn " aria-describedby="Enter with your account">Enter</button>
                             <button type="button" class="btn btn-register" aria-describedby="Go to Register form">Register new account</button>
                         </div>
                     </form>
@@ -64,6 +64,10 @@
                         <button type="button" class="btn btn-login" aria-describedby="Go to Login form">Already have a account</button>
                     </div>
                 </form>
+            </div>
+
+            <div class="wrapper-form_login main-box active">
+                <p>mainPage.</p>
             </div>
         </main>
         <?php require "./php/forms.php"; ?>
